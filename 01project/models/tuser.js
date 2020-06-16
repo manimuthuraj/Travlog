@@ -3,7 +3,7 @@ var passportLocalMongoose = require("passport-local-mongoose")
 
 var tuserScheme = new mongoose.Schema({
     username: String,
-    password: String
+    password: String,
 })
 
 tuserScheme.plugin(passportLocalMongoose);

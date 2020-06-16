@@ -4,6 +4,8 @@ mongoose.connect("mongodb+srv://yelp:yelp@cluster0-lfy4s.mongodb.net/yelp?retryW
 var visitedpSchema = new mongoose.Schema({
     name: String,
     image: String,
-    about: String
+    about: String,
+    place: String,
+    date: { type: Date }
 })
 module.exports = mongoose.model("visitedp", visitedpSchema);

@@ -6,10 +6,13 @@ var visitedp = require("./models/vmodel")
 var passport = require("passport")
 var LocalStrategy = require("passport-local")
 var User = require("./models/tuser");
+var methodOverride = require("method-override")
 const { render } = require("ejs");
 mongoose.connect("mongodb+srv://yelp:yelp@cluster0-lfy4s.mongodb.net/yelp?retryWrites=true&w=majority", { useNewUrlParser: true })
+app.use(express.static(__dirname + "/public"));
 app.use(bodyParesr.urlencoded({ extended: true }));
 app.set("view engine", "ejs")
+app.use(express.static("public"));
 
 app.use(require("express-session")({
     secret: "hi travelog",
@@ -21,6 +24,13 @@ app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
+
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+})
+app.use(methodOverride("_method"))
+
 
 /*var visitedpSchema = new mongoose.Schema({
     name: String,
@@ -42,8 +52,9 @@ var visitedp = mongoose.model("visitedp", visitedpSchema);
 app.get("/", function(req, res) {
     res.render("Login")
 })
+
 app.get("/visited", isLoggedIn, function(req, res) {
-    visitedp.find({}, function(err, vplace) {
+    visitedp.find({ $and: [{ place: { $ne: "bucket" } }, { place: { $exists: true } }] }, function(err, vplace) {
         if (err) {
             console.log(err)
         } else {
@@ -56,7 +67,9 @@ app.post("/visited", isLoggedIn, function(req, res) {
     var name = req.body.name
     var image = req.body.image
     var about = req.body.about
-    var newPlace = { name: name, image: image, about: about }
+    var place = req.body.place
+    var date = req.body.date
+    var newPlace = { name: name, image: image, about: about, place: place, date: date }
     visitedp.create(newPlace, function(err, visited) {
         if (err) {
             console.log(err)
@@ -65,18 +78,49 @@ app.post("/visited", isLoggedIn, function(req, res) {
         }
     })
 })
-app.get("/bucket", function(req, res) {
-    visitedp.find({}, function(err, vplace) {
+app.get("/bucket", isLoggedIn, function(req, res) {
+    visitedp.find({ $and: [{ place: { $ne: "visited" } }, { place: { $exists: true } }] }, function(err, vplace) {
         if (err) {
             console.log(err)
         } else {
-            res.render("bucket", { vplace: vplace })
+            res.render("vplace", { vplace: vplace })
         }
     })
 })
 
 app.get("/visited/new", isLoggedIn, function(req, res) {
     res.render("new.ejs")
+})
+
+app.get("/visited/:id/edit", function(req, res) {
+    visitedp.findById(req.params.id, function(err, found) {
+        if (err) {
+            res.redirect("/visited")
+        } else {
+            res.render("edit", { found: found })
+                //res.send("hi")
+        }
+    })
+
+})
+app.put("/visited/:id", function(req, res) {
+    visitedp.findByIdAndUpdate(req.params.id, req.body.place, function(err, updated) {
+        if (err) {
+            res.redirect("/visited")
+        } else {
+            res.redirect("/visited")
+        }
+    })
+})
+
+app.delete("/visited/:id", function(req, res) {
+    visitedp.findByIdAndRemove(req.params.id, function(err) {
+        if (err) {
+            res.redirect("/visited")
+        } else {
+            res.redirect("/visited")
+        }
+    })
 })
 
 app.get("/register", function(req, res) {

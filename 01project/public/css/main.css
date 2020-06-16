@@ -1,0 +1,12 @@
+.navbar-custom {
+    background-color: rgb(5, 2, 54);
+}
+
+.navbar-default {
+    border-radius: 0;
+}
+
+.btn {
+    border-radius: 0;
+    background-color: rgb(5, 2, 54);
+}

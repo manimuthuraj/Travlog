@@ -1,7 +1,47 @@
 <%- include("partials/header") %>
-    <div class="container">
-        <a class="btn btn-primary" href="\visited">visited</a>
+
+    <div class="container-flex py-0" style="background-color: rgb(5, 2, 54);">
+        <div> <img src="/UX/home-illustration.svg"> Sometimes,what matter is to pack your bags and get on a car and travel NON-STOP.</div>
+    </div>
+    <style>
+        body {
+            margin-top: 0%;
+        }
+        
+        .navbar {
+            margin-bottom: 0!important;
+        }
+        
+        .navbar-custom {
+            background-color: rgb(5, 2, 54);
+        }
+        
+        .navbar-default {
+            border-radius: 0;
+        }
+        
+        .btn {
+            border-radius: 0;
+            background-color: rgb(5, 2, 54);
+        }
+        
+        #toogle {
+            background-color: rgb(20, 13, 155);
+            margin-top: 5px;
+            width: 100%;
+        }
+        
+        .toogle {
+            color: white;
+            margin-left: 8%;
+        }
+    </style>
+
+    <div id="toogle">
+        <a class="toogle" href="\visited">MY VISITED PLACE</a>
         <a class="btn btn-primary" href="\bucket">BUCKET-LIST</a>
+    </div>
+    <div class="container">
         <h3>My Visited Places</h33>
             <a class="btn btn-primary btn-xs pull-right" href="/visited/new">ADD PLACE</a>
 
@@ -9,12 +49,15 @@
                 <% vplace.forEach(function(vplace){ %>
                     <div class="col-md-3 col-sm-6">
                         <div class="thumbnail">
-                            <img src="<%= vplace.image %>">
+                            <a href="/visited/<%= vplace._id %>/edit"> <img src="<%= vplace.image %>"> </a>
                             <div class="caption">
                                 <h5>
                                     <%= vplace.name %>
                                 </h5>
                             </div>
+                            <h6>
+                                <%= vplace.date %>
+                            </h6>
                         </div>
                     </div>
                     <%}) %>

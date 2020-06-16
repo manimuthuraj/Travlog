@@ -4,8 +4,9 @@
 <head>
     <title>Travelog</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-custom navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -17,7 +18,14 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Hi,mani</a>
+                <li>
+                    <% if(currentUser){ %>
+                        <a href="#">
+                            <li><a href="#">Hi,
+                                <%= currentUser.username %></a>
+                            </li>
+                            <% }%>
+                        </a>
                 </li>
                 <li>
                     <a href="/logout">Logout</a>
@@ -28,6 +36,5 @@
 </nav>
 
 <body>
-    <h1>header</h1>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
