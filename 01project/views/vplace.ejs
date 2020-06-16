@@ -1,0 +1,23 @@
+<%- include("partials/header") %>
+    <div class="container">
+        <a class="btn btn-primary" href="\visited">visited</a>
+        <a class="btn btn-primary" href="\bucket">BUCKET-LIST</a>
+        <h3>My Visited Places</h33>
+            <a class="btn btn-primary btn-xs pull-right" href="/visited/new">ADD PLACE</a>
+
+            <div class="row text-center" style="display: flex; flex-wrap:wrap;">
+                <% vplace.forEach(function(vplace){ %>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="thumbnail">
+                            <img src="<%= vplace.image %>">
+                            <div class="caption">
+                                <h5>
+                                    <%= vplace.name %>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <%}) %>
+            </div>
+    </div>
+    <%- include("partials/footer") %>

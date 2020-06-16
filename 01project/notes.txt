@@ -1,0 +1,9 @@
+#travelog
+.
+.
+#Each visited page has:
+.Name
+.Date
+.Image
+
+https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500
