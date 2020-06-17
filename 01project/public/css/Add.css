@@ -3,7 +3,7 @@ body {
 }
 
 #arrow {
-    width: 30px;
+    width: 25px;
 }
 
 #updateform {
@@ -23,4 +23,20 @@ body {
 
 #text {
     text-align: left;
+}
+
+#Delete {
+    color: red;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#arrow-text {
+    font-weight: bold;
+    font-size: 20px;
 }

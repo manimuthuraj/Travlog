@@ -1,5 +1,5 @@
 <%- include("partials/header") %>
-    <div class="container">
+    <!--  <div class="container">
         <a class="btn btn-primary" href="\visited">visited</a>
         <a class="btn btn-primary" href="\bucket">BUCKET-LIST</a>
         <h3>My Visited Places</h33>
@@ -19,5 +19,41 @@
                     </div>
                     <%}) %>
             </div>
+    </div> -->
+    <link href="/css/visited.css" rel="stylesheet" type="text/css">
+
+    <div class="container-flex py-0" id="banner">
+        <div class="row" id="banner-image"> <img src="/UX/home-illustration.svg"></div>
+        <div class="top-text1"> <span id="top-text1">Sometimes,what matter is to pack your bags and get on a car and travel NON-STOP.</span><br><span id="top-text">EXPLORE! The World Is Not Enough</span></div>
+    </div>
+    <div id="toogle">
+        <span> <a class="toogle" id="visited-link" href="\visited">MY VISITED PLACE</a> </span>
+        <span>  <a id="bucket-link" href="\bucket">BUCKET-LIST</a> </span>
+    </div>
+    <div class="container">
+        <h3 id="heading">My Bucket list</h3>
+        <a class="btn btn-primary btn-xs pull-right" href="/visited/new">ADD PLACE</a>
+
+        <div class="row text-center" style="display: flex; flex-wrap:wrap;">
+            <% vplace.forEach(function(vplace){ %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                        <a href="/visited/<%= vplace._id %>/edit"> <img id="inside-image" src="<%= vplace.image %>"> </a>
+                        <div class="caption">
+                            <h5>
+                                <%= vplace.name %>
+                            </h5>
+                        </div>
+                        <h6>
+                            <!--<%= vplace.date %> -->
+                        </h6>
+                    </div>
+                </div>
+                <%}) %>
+                    <%if(Object.keys(vplace).length === 0){%>
+                        <h1 id="message"> NO BUCKET-LIST YET, </h1>
+                        <h3 id="message1">ADD TO SEE</h3>
+                        <%}%>
+        </div>
     </div>
     <%- include("partials/footer") %>

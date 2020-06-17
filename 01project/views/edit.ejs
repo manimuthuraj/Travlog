@@ -1,10 +1,10 @@
 <%- include("partials/header") %>
-    <div class="container">
+    <!-- <div class="container">
         <a class="btn btn-primary btn-xs" href="/visited">Back</a>
         <div class="row">
             <div style="width: 30%; margin: 25px auto;">
                 <form action="/visited/<%=found._id%>?_method=PUT" method="POST">
-                    <h4 style="text-align: center;">Edit</h4>
+                    <h4 id="text">Edit</h4>
                     <div class="form-group">
                         <label for="city">City</label>
                         <input class="form-control" id="city" type="text" value="<%=found.name%>" name="place[name]">
@@ -37,5 +37,59 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div>-->
     <%- include("partials/footer") %>
+
+
+        <link href="/css/Add.css" rel="stylesheet" type="text/css">
+        <div class="contailner" style="height: 50px;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="arrow-text">
+                        <a href="/visited"><img id="arrow" class="logo" src="/UX/arrow.svg"></a>Edit Place Details
+                    </div>
+                    <img class="logo" src="/UX/travel-illustration.svg">
+                </div>
+                <div class="col-md-6">
+                    <div class="row" id="updateform">
+                        <div id="form">
+                            <form action="/visited/<%=found._id%>?_method=PUT" method="POST">
+                                <h4 id="text">Add Details about the place where you have visited</h4>
+                                <div class="form-group">
+                                    <label for="city">City</label>
+                                    <input class="form-control" id="city" required type="text" value="<%=found.name%>" name="place[name]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Photo">Photo URL</label>
+                                    <input class="form-control" id="photo" required type="text" value="<%=found.image%>" name="place[image]">
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment">Few words about this place</label>
+                                    <textarea class="form-control" rows="5" id="comment" value="<%=found.about%>" name="place[about]"></textarea>
+                                </div>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" name="place[place]" value="<%=found.place%>" id="Check1">
+                                    <label class="form-check-label" for="Check1">VISITED</label>
+                                    <input type="checkbox" class="form-check-input" name="place[place]" value="<%=found.place%>" id="Check2">
+                                    <label class="form-check-label" for="Check2">BUCKET-LIST</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Photo">Travel</label>
+                                    <input class="form-control" required id="photo" type="text" value="<%=found.date%>" name="place[date]">
+                                </div>
+                                <div class="form-group text-right ">
+                                    <a href="/visited">CANCEL</a>
+                                    <button class="btn btn-xs btn-primary ">UPDATE</button>
+                                </div>
+                            </form>
+                            <form action="/visited/<%=found._id%>?_method=DELETE" method="POST">
+                                <button id="Delete">Delete This Place</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <%- include("partials/footer") %>

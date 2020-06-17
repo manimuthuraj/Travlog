@@ -40,7 +40,7 @@
     <div class="contailner" style="height: 50px;">
         <div class="row">
             <div class="col-md-6">
-                <div>
+                <div id="arrow-text">
                     <a href="/visited"><img id="arrow" class="logo" src="/UX/arrow.svg"></a>Add Places
                 </div>
                 <img class="logo" src="/UX/travel-illustration.svg">
@@ -52,11 +52,11 @@
                             <h4 id="text">Add Details about the place where you have visited</h4>
                             <div class="form-group">
                                 <label for="city">City</label>
-                                <input class="form-control" id="city" type="text" placeholder="City" name="name">
+                                <input required class="form-control" id="city" type="text" placeholder="City" name="name">
                             </div>
                             <div class="form-group">
                                 <label for="Photo">Photo URL</label>
-                                <input class="form-control" id="photo" type="text" placeholder="Imageurl" name="image">
+                                <input required class="form-control" id="photo" type="text" placeholder="Imageurl" name="image">
                             </div>
                             <div class="form-group">
                                 <label for="comment">Few words about this place</label>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="Photo">Travel</label>
-                                <input class="form-control" id="photo" type="text" placeholder="DATE" name="date">
+                                <input required class="form-control" id="photo" type="text" placeholder="DATE" name="date">
                             </div>
                             <div class="form-group text-right ">
                                 <button class="btn btn-xs btn-primary ">ADD PLACE</button>

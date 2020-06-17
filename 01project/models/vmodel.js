@@ -6,6 +6,10 @@ var visitedpSchema = new mongoose.Schema({
     image: String,
     about: String,
     place: String,
-    date: { type: Date }
+    date: { type: Date },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 })
 module.exports = mongoose.model("visitedp", visitedpSchema);

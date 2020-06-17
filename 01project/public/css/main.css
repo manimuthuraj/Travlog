@@ -10,3 +10,30 @@
     border-radius: 0;
     background-color: rgb(5, 2, 54);
 }
+
+.thumbnail {
+    border-radius: 0;
+    background-color: rgb(255, 255, 255);
+    width: 200px;
+    padding-top: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 20px;
+    width: 95%;
+    height: 90%;
+}
+
+#logout-border {
+    border-left: blanchedalmond solid 1px;
+    line-height: 3px;
+    margin-top: 13%;
+    color: white;
+}
+
+#currentuser {
+    color: white;
+}
+
+body {
+    color: rgb(5, 2, 54);
+}
