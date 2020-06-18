@@ -41,3 +41,8 @@ body {
     width: 70%;
     margin-left: 0px;
 }
+
+#err {
+    font-size: 10px;
+    color: red;
+}

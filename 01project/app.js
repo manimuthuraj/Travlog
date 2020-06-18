@@ -31,6 +31,13 @@ app.use(function(req, res, next) {
     res.locals.currentUser = req.user;
     next();
 })
+
+
+app.use(function(req, res, next) {
+    err = "no";
+    next();
+})
+
 app.use(methodOverride("_method"))
 app.use(visitedRoutes);
 app.use(indexRoutes);

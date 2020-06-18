@@ -1,6 +1,6 @@
 body {
     margin-top: 0%;
-    background-color: rgb(232, 236, 232);
+    background-color: rgb(226, 231, 226);
 }
 
 .navbar {
@@ -90,4 +90,9 @@ body {
 
 #heading {
     margin-left: 15px;
+}
+
+#place-name {
+    font-weight: bold;
+    color: rgb(5, 2, 54);
 }

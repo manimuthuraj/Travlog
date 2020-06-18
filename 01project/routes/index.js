@@ -6,7 +6,7 @@ var User = require("../models/tuser")
 
 
 router.get("/register", function(req, res) {
-    res.render("Login")
+    res.render("Login", { err: err })
 })
 
 router.post("/register", function(req, res) {
@@ -14,7 +14,8 @@ router.post("/register", function(req, res) {
     User.register(newtuser, req.body.password, function(err, user) {
         if (err) {
             console.log(err)
-            return res.render("Login")
+            req.flash("error", err.message);
+            return res.render("Login", { err: err })
         }
         passport.authenticate("local")(req, res, function() {
             res.redirect("/visited")
@@ -23,11 +24,12 @@ router.post("/register", function(req, res) {
 })
 
 router.get("/login", function(req, res) {
-    res.render("Login", { message: "errr" })
+    res.render("Login", { message: "err" })
 })
 
 router.post("/login", passport.authenticate("local", { successRedirect: "/visited", failureRedirect: "/", failureFlash: true, failureMessage: true }),
     function(req, res) {
+        req.flash("error", err.message)
         res.render("Login")
     })
 

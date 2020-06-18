@@ -65,14 +65,16 @@
                         <h3>Login</h3>
                         <form action="/login" method="POST">
                             <div class="form-group">
-                                <label for="user">username</label>
-                                <input type="text" name="username" required class="form-control" id="user" placeholder="username">
+                                <label for="user1">username</label>
+                                <input type="text" name="username" required class="form-control" id="user1" placeholder="username">
                             </div>
+                            <p id="u1"></p>
                             <div class="form-group">
                                 <label for="Password1">Password</label>
                                 <input type="password" name="password" required class="form-control" id="Password1" placeholder="Password">
                             </div>
-                            <button type="submit" class="btn btn-primary">LOG IN</button>
+                            <p id="p1"></p>
+                            <button type="submit" class="btn btn-primary" onclick="my1()">LOG IN</button>
                         </form>
                     </div>
                 </div>
@@ -83,15 +85,22 @@
                     <div id="loginform">
                         <form action="/register" method="POST">
                             <p>If you don't have an account register to create account</p>
-                            <div class="form-group">
-                                <label for="user">username</label>
-                                <input type="text" name="username" required class="form-control" id="user" placeholder="username">
-                            </div>
-                            <div class="form-group">
-                                <label for="Password1">Password</label>
-                                <input type="password" name="password" required class="form-control" id="Password1" placeholder="Password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">REGISTER</button>
+                            <%if(err){%>
+                                <h6 id="err">
+                                    <%= err.message %>
+                                </h6>
+                                <%}%>
+                                    <div class="form-group">
+                                        <label for="user">username</label>
+                                        <input type="text" name="username" required class="form-control" id="user" placeholder="username">
+                                    </div>
+                                    <p id="u"></p>
+                                    <div class="form-group">
+                                        <label for="Password">Password</label>
+                                        <input type="password" name="password" required class="form-control" id="Password" placeholder="Password">
+                                    </div>
+                                    <p id="p"></p>
+                                    <button type="submit" class="btn btn-primary" onclick="my()">REGISTER</button>
                         </form>
                     </div>
                 </div>
@@ -100,4 +109,32 @@
     </div>
 
     </div>
+    <script>
+        var user = document.getElementById("user").value
+        var password = document.getElementById("password").value
+
+        function my() {
+            if (user.trim() == "" || password.trim() == "") {
+                document.getElementById("u").innerHTML = "*required field"
+                document.getElementById("p").innerHTML = "*required field"
+            } else {
+                document.getElementById("u").innerHTML = ""
+                document.getElementById("p").innerHTML = ""
+            }
+        }
+    </script>
+    <script>
+        var user = document.getElementById("user1").value
+        var password = document.getElementById("password1").value
+
+        function my1() {
+            if (user.trim() == "" || password.trim() == "") {
+                document.getElementById("u1").innerHTML = "*required field"
+                document.getElementById("p1").innerHTML = "*required field"
+            } else {
+                document.getElementById("u1").innerHTML = ""
+                document.getElementById("p1").innerHTML = ""
+            }
+        }
+    </script>
     <%- include("partials/footer") %>

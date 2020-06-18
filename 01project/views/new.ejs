@@ -36,6 +36,7 @@
         </div>
     </div>
 -->
+    <script type="text/javascript" src="/js/add.js"></script>
     <link href="/css/Add.css" rel="stylesheet" type="text/css">
     <div class="contailner" style="height: 50px;">
         <div class="row">
@@ -54,14 +55,20 @@
                                 <label for="city">City</label>
                                 <input required class="form-control" id="city" type="text" placeholder="City" name="name">
                             </div>
+                            <p id="n"></p>
                             <div class="form-group">
                                 <label for="Photo">Photo URL</label>
                                 <input required class="form-control" id="photo" type="text" placeholder="Imageurl" name="image">
                             </div>
+                            <p id="ph"></p>
                             <div class="form-group">
                                 <label for="comment">Few words about this place</label>
-                                <textarea class="form-control" rows="5" id="comment" name="about"></textarea>
+                                <textarea class="form-control" required rows="5" id="comment" name="about"></textarea>
                             </div>
+                            <p id="c"></p>
+
+
+
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" name="place" value="visited" id="Check1">
                                 <label class="form-check-label" for="Check1">VISITED</label>
@@ -69,11 +76,12 @@
                                 <label class="form-check-label" for="Check2">BUCKET-LIST</label>
                             </div>
                             <div class="form-group">
-                                <label for="Photo">Travel</label>
-                                <input required class="form-control" id="photo" type="text" placeholder="DATE" name="date">
+                                <label for="date">When did you travel here?</label>
+                                <input required class="form-control" id="date" type="text" placeholder="YYYY/MM/DD" name="date">
                             </div>
+                            <p id="d"></p>
                             <div class="form-group text-right ">
-                                <button class="btn btn-xs btn-primary ">ADD PLACE</button>
+                                <button class="btn btn-xs btn-primary " onclick="my()">ADD PLACE</button>
                             </div>
                         </form>
                     </div>
@@ -82,4 +90,25 @@
         </div>
     </div>
     </div>
+
+    <script>
+        var name = document.getElementById("city").value
+        var photo = document.getElementById("photo").value
+        var date = document.getElementById("date").value
+        var comment = document.getElementById("comment").value
+
+        function my() {
+            if (comment.trim() == "" || photo.trim() == "" || date.trim() == "") {
+                document.getElementById("c").innerHTML = "*required field"
+                document.getElementById("n").innerHTML = "*required field"
+                document.getElementById("ph").innerHTML = "*required field"
+                document.getElementById("d").innerHTML = "*required field"
+            } else {
+                document.getElementById("c").innerHTML = ""
+                document.getElementById("n").innerHTML = ""
+                document.getElementById("ph").innerHTML = ""
+                document.getElementById("d").innerHTML = ""
+            }
+        }
+    </script>
     <%- include("partials/footer") %>
