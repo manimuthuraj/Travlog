@@ -43,6 +43,14 @@ body {
 }
 
 #err {
-    font-size: 10px;
+    font-size: 13px;
+    color: red;
+}
+
+#u2 {
+    color: red;
+}
+
+#u {
     color: red;
 }

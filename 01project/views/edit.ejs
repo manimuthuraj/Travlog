@@ -53,11 +53,11 @@
                 <div class="col-md-6">
                     <div class="row" id="updateform">
                         <div id="form">
-                            <form action="/visited/<%=found._id%>?_method=PUT" method="POST">
+                            <form action="/visited/<%=found._id%>?_method=PUT" method="POST" onsubmit="return my()" name="myform">
                                 <h4 id="text">Add Details about the place where you have visited</h4>
                                 <div class="form-group">
                                     <label for="city">City</label>
-                                    <input class="form-control" id="city" required type="text" value="<%=found.name%>" name="place[name]">
+                                    <input class="form-control" id="city" type="text" value="<%=found.name%>" name="place[name]">
                                 </div>
                                 <div class="form-group">
                                     <label for="Photo">Photo URL</label>
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="comment">Few words about this place</label>
-                                    <textarea class="form-control" rows="5" required id="comment" value="<%=found.about%>" name="place[about]"></textarea>
+                                    <textarea class="form-control" rows="5" id="comment" value="<%=found.about%>" name="place[about]"></textarea>
                                 </div>
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input" name="place[place]" value="<%=found.place%>" id="Check1">
@@ -75,8 +75,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Photo">When did you travel here?</label>
-                                    <input class="form-control" required id="photo" type="text" value="<%=found.date%>" name="place[date]">
+                                    <input class="form-control" id="photo" type="text" value="<%=found.date%>" name="place[date]">
                                 </div>
+                                <p id="u2"></p>
                                 <div class="form-group text-right ">
                                     <a href="/visited">CANCEL</a>
                                     <button class="btn btn-xs btn-primary ">UPDATE</button>
@@ -91,5 +92,17 @@
             </div>
         </div>
         </div>
+        <script>
+            function my() {
+                var x = document.forms["myform"]["place[name]"].value;
+                var y = document.forms["myform"]["place[image]"].value;
+                var z = document.forms["myform"]["place[about]"].value;
+                var a = document.forms["myform"]["place[date]"].value;
+                if (x == "" || y == "" || z == "" || a == "") {
+                    document.getElementById("u2").innerHTML = "*All fields are reuired"
+                    return false;
+                }
+            }
+        </script>
 
         <%- include("partials/footer") %>
