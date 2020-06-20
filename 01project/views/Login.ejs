@@ -1,11 +1,12 @@
 <%- include("partials/header") %>
-     <link href="/css/login.css" rel="stylesheet" type="text/css">
-    <div id="image" class="row">
-        <img class="logo" src="/UX/login-header.svg">
-    </div>
+<link href="/css/login.css" rel="stylesheet" type="text/css">
+    <div class="container">
+        <div id="image" class="row ">
+            <img class="logo" src="/UX/login-header.svg">
+        </div>
         <div id="form" class="row">
-            <div class="col-md-6">
-                <div class="ro">
+            <div class="col-md-6 col-sm-6">
+                <div class="rowh">
                     <div id="login">
                         <h3>Login</h3>
                         <form action="/login" method="POST" onsubmit="return my1()" name="myForm">
@@ -24,8 +25,8 @@
                 </div>
 
             </div>
-            <div class="col-md-6">
-                <div class="ro" id="registration">
+            <div class="col-md-6 col-sm-6">
+                <div id="registration">
                     <div id="loginform">
                         <form action="/register" method="POST" onsubmit="return my()" name="myform">
                             <p>If you don't have an account register to create account</p>
@@ -51,7 +52,7 @@
         </div>
     </div>
 
-    
+    </div>
 
     <script>
         function my() {
