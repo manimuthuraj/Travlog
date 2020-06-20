@@ -3,7 +3,7 @@ body {
 }
 
 #image {
-    width: 65%;
+    width: 93%;
     height: 100%;
     margin-left: 25%;
     margin-top: 7%;
@@ -35,11 +35,12 @@ body {
 
 #registration {
     margin-top: 17px;
+    border-left: rgb(5, 2, 54) solid 1px;
 }
 
 #loginform {
     width: 70%;
-    margin-left: 0px;
+    margin-left: 5%;
 }
 
 #err {
