@@ -3,17 +3,17 @@ var router = express.Router()
 var visitedp = require("../models/vmodel")
 var User = require("../models/vmodel")
 
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
     res.render("Login")
 })
 
-router.get("/visited", isLoggedIn, function(req, res) {
+router.get("/visited", isLoggedIn, function (req, res) {
     userid = req.user._id
     query = { $and: [{ place: { $ne: "bucket" } }, { place: { $exists: true } }] }
     final = { $and: [{ "user": userid }, query] }
-    visitedp.find({ "user": userid }, function(err, place) {
+    visitedp.find({ "user": userid }, function (err, place) {
         if (err) { console.log(err) } else {
-            visitedp.find(final, function(err, vplace) {
+            visitedp.find(final, function (err, vplace) {
                 if (err) {
                     console.log(err)
                 } else {
@@ -25,7 +25,7 @@ router.get("/visited", isLoggedIn, function(req, res) {
 
 })
 
-router.post("/visited", isLoggedIn, function(req, res) {
+router.post("/visited", isLoggedIn, function (req, res) {
     var name = req.body.name
     var image = req.body.image
     var about = req.body.about
@@ -33,8 +33,13 @@ router.post("/visited", isLoggedIn, function(req, res) {
     var date = req.body.date
     var user = req.user._id
     name1 = name.toUpperCase()
+
+    const isAlreadyVisited = visited.find({ place: name1 })
+    if (isAlreadyVisited) {
+        console.log("Place Already added")
+    }
     var newPlace = { name: name1, image: image, about: about, place: place, date: date, user: user }
-    visitedp.create(newPlace, function(err, visited) {
+    visited.create(newPlace, function (err, visited) {
         if (err) {
             console.log(err)
         } else {
@@ -42,17 +47,17 @@ router.post("/visited", isLoggedIn, function(req, res) {
         }
     })
 })
-router.get("/visited/new", isLoggedIn, function(req, res) {
+router.get("/visited/new", isLoggedIn, function (req, res) {
     res.render("new.ejs")
 })
 
-router.get("/bucket", isLoggedIn, function(req, res) {
+router.get("/bucket", isLoggedIn, function (req, res) {
     userid = req.user._id
     query = { $and: [{ place: { $ne: "visited" } }, { place: { $exists: true } }] }
     final = { $and: [{ "user": userid }, query] }
-    visitedp.find({ "user": userid }, function(err, place) {
+    visitedp.find({ "user": userid }, function (err, place) {
         if (err) { console.log(err) } else {
-            visitedp.find(final, function(err, vplace) {
+            visitedp.find(final, function (err, vplace) {
                 if (err) {
                     console.log(err)
                 } else {
@@ -64,8 +69,8 @@ router.get("/bucket", isLoggedIn, function(req, res) {
 })
 
 
-router.get("/visited/:id/edit", isLoggedIn, function(req, res) {
-    visitedp.findById(req.params.id, function(err, found) {
+router.get("/visited/:id/edit", isLoggedIn, function (req, res) {
+    visitedp.findById(req.params.id, function (err, found) {
         if (err) {
             res.redirect("/visited")
         } else {
@@ -74,8 +79,8 @@ router.get("/visited/:id/edit", isLoggedIn, function(req, res) {
     })
 
 })
-router.put("/visited/:id", isLoggedIn, function(req, res) {
-    visitedp.findByIdAndUpdate(req.params.id, req.body.place, function(err, updated) {
+router.put("/visited/:id", isLoggedIn, function (req, res) {
+    visitedp.findByIdAndUpdate(req.params.id, req.body.place, function (err, updated) {
         if (err) {
             res.redirect("/visited")
         } else {
@@ -84,8 +89,8 @@ router.put("/visited/:id", isLoggedIn, function(req, res) {
     })
 })
 
-router.delete("/visited/:id", isLoggedIn, function(req, res) {
-    visitedp.findByIdAndRemove(req.params.id, function(err) {
+router.delete("/visited/:id", isLoggedIn, function (req, res) {
+    visitedp.findByIdAndRemove(req.params.id, function (err) {
         if (err) {
             res.redirect("/visited")
         } else {
